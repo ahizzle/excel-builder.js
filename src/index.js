@@ -14,7 +14,6 @@ var EBExport = module.exports = {
     util: require('./Excel/util'),
     Workbook: require('./Excel/Workbook'),
     Worksheet: require('./Excel/Worksheet'),
-    WorksheetExportWorker: require('./Excel/WorksheetExportWorker'),
     XMLDOM: require('./Excel/XMLDOM'),
     ZipWorker: require('./Excel/ZipWorker'),
     Builder: require('./excel-builder'),
