@@ -46,8 +46,9 @@ _.extend(Table.prototype, {
     },
 
     setTableColumns: function (columns) {
+        var that = this; // Fixes issue on react native web branch.
         _.each(columns, function (column) {
-            this.addTableColumn(column);
+            that.addTableColumn(column);
         }, this);
     },
 
