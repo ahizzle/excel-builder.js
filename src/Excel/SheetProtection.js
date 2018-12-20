@@ -38,51 +38,51 @@ _.extend(SheetProtection.prototype, {
         var attrs = {};
         var sheetProtection = doc.createElement('sheetProtection', attrs);
 
-        if(this.sheet === true) {
-
-            if(this.unhashedValue) {
-                var forge = require('node-forge');
-                var md = forge.md[this.algorithmName].create();
-                if(!this.saltValue) {
-                    //Bad human! Bad!
-                    this.saltValue = Math.random().toString(36).substr(2, 5);
-                }
-                var spinCount = this.spinCount = this.spinCount || 1000;
-                var pass = this.saltValue + '' + this.unhashedValue;
-
-                this.saltValue = new Buffer(this.saltValue).toString('base64')
-
-                while(spinCount--) {
-                    md.update(pass);
-                    pass=md.digest().toHex();
-                }
-
-                this.hashValue = new Buffer(pass).toString('base64');
-
-            }
-
-            util.setAttributesOnDoc(sheetProtection, {
-                algorithmName: this.algorithmName,
-                autoFilter: {v: this.autoFilter, type: Boolean},
-                deleteColumns: {v: this.deleteColumns, type: Boolean},
-                deleteRows: {v: this.deleteRows, type: Boolean},
-                formatCells: {v: this.formatCells, type: Boolean},
-                formatColumns: {v: this.formatColumns, type: Boolean},
-                formatRows: {v: this.formatRows, type: Boolean},
-                hashValue: this.hashValue,
-                insertColumns: {v: this.insertColumns, type: Boolean},
-                insertHyperlinks: {v: this.insertHyperlinks, type: Boolean},
-                insertRows: {v: this.insertRows, type: Boolean},
-                objects: {v: this.objects, type: Boolean},
-                pivotTables: {v: this.pivotTables, type: Boolean},
-                saltValue: this.saltValue,
-                scenarios: {v: this.scenarios, type: Boolean},
-                selectLockedCells: {v: this.selectLockedCells, type: Boolean},
-                selectUnlockedCells: {v: this.selectUnlockedCells, type: Boolean},
-                sheet: {v: this.sheet, type: Boolean},
-                spinCount: this.spinCount
-            });
-        }
+        // if(this.sheet === true) {
+        //
+        //     if(this.unhashedValue) {
+        //         var forge = require('node-forge');
+        //         var md = forge.md[this.algorithmName].create();
+        //         if(!this.saltValue) {
+        //             //Bad human! Bad!
+        //             this.saltValue = Math.random().toString(36).substr(2, 5);
+        //         }
+        //         var spinCount = this.spinCount = this.spinCount || 1000;
+        //         var pass = this.saltValue + '' + this.unhashedValue;
+        //
+        //         this.saltValue = new Buffer(this.saltValue).toString('base64')
+        //
+        //         while(spinCount--) {
+        //             md.update(pass);
+        //             pass=md.digest().toHex();
+        //         }
+        //
+        //         this.hashValue = new Buffer(pass).toString('base64');
+        //
+        //     }
+        //
+        //     util.setAttributesOnDoc(sheetProtection, {
+        //         algorithmName: this.algorithmName,
+        //         autoFilter: {v: this.autoFilter, type: Boolean},
+        //         deleteColumns: {v: this.deleteColumns, type: Boolean},
+        //         deleteRows: {v: this.deleteRows, type: Boolean},
+        //         formatCells: {v: this.formatCells, type: Boolean},
+        //         formatColumns: {v: this.formatColumns, type: Boolean},
+        //         formatRows: {v: this.formatRows, type: Boolean},
+        //         hashValue: this.hashValue,
+        //         insertColumns: {v: this.insertColumns, type: Boolean},
+        //         insertHyperlinks: {v: this.insertHyperlinks, type: Boolean},
+        //         insertRows: {v: this.insertRows, type: Boolean},
+        //         objects: {v: this.objects, type: Boolean},
+        //         pivotTables: {v: this.pivotTables, type: Boolean},
+        //         saltValue: this.saltValue,
+        //         scenarios: {v: this.scenarios, type: Boolean},
+        //         selectLockedCells: {v: this.selectLockedCells, type: Boolean},
+        //         selectUnlockedCells: {v: this.selectUnlockedCells, type: Boolean},
+        //         sheet: {v: this.sheet, type: Boolean},
+        //         spinCount: this.spinCount
+        //     });
+        // }
 
         return sheetProtection;
     }
